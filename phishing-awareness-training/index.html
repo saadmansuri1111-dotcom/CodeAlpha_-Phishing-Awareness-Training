@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Phishing Awareness Training Module — Learn to identify and avoid phishing attacks, social engineering, and online threats.">
+    <title>Phishing Awareness Training | CyberShield Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-grid"></div>
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <span class="progress-text" id="progressText">0%</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="top-nav" id="topNav">
+        <div class="nav-brand">
+            <div class="shield-icon">🛡️</div>
+            <span>CyberShield Academy</span>
+        </div>
+        <div class="nav-section-title" id="navSectionTitle">Welcome</div>
+        <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" onclick="prevSlide()" disabled>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <span class="slide-counter" id="slideCounter">1 / 10</span>
+            <button class="nav-btn" id="nextBtn" onclick="nextSlide()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="slides-container" id="slidesContainer">
+
+        <!-- SLIDE 0: Welcome -->
+        <section class="slide active" data-slide="0" data-title="Welcome">
+            <div class="slide-content hero-slide">
+                <div class="hero-badge animate-float">
+                    <div class="hero-icon-ring">
+                        <div class="hero-icon">🎣</div>
+                    </div>
+                </div>
+                <h1 class="hero-title">
+                    <span class="title-accent">Phishing</span> Awareness Training
+                </h1>
+                <p class="hero-subtitle">Learn to identify, avoid, and report phishing attacks. Protect yourself and your organization from cyber threats.</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-count="3400000000">3.4B</div>
+                        <div class="stat-label">Phishing emails sent daily</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">83%</div>
+                        <div class="stat-label">Of organizations experienced phishing in 2024</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">$4.9M</div>
+                        <div class="stat-label">Average cost of a data breach</div>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="nextSlide()">
+                    Begin Training
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+                <div class="hero-duration">⏱️ Estimated time: 15 minutes</div>
+            </div>
+        </section>
+
+        <!-- SLIDE 1: What is Phishing? -->
+        <section class="slide" data-slide="1" data-title="What is Phishing?">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">01</div>
+                    <h2>What is <span class="highlight">Phishing?</span></h2>
+                </div>
+                <div class="definition-card">
+                    <div class="definition-icon">📖</div>
+                    <div class="definition-text">
+                        <strong>Phishing</strong> is a type of <em>social engineering attack</em> where cybercriminals impersonate trusted entities to trick individuals into revealing sensitive information, clicking malicious links, or downloading harmful attachments.
+                    </div>
+                </div>
+                <div class="info-grid two-col">
+                    <div class="info-card glass-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>The Goal</h3>
+                        <p>Attackers aim to steal credentials, financial data, personal information, or install malware on your systems. A single click can compromise an entire organization.</p>
+                    </div>
+                    <div class="info-card glass-card">
+                        <div class="card-icon">📧</div>
+                        <h3>The Method</h3>
+                        <p>Phishing typically comes through email, but can also use SMS (smishing), phone calls (vishing), social media, or fake websites to lure victims.</p>
+                    </div>
+                </div>
+                <div class="anatomy-section">
+                    <h3>🔬 Anatomy of a Phishing Attack</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>1. Research</strong>
+                                <p>Attacker gathers info about the target</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>2. Craft</strong>
+                                <p>Creates convincing bait (email, page, etc.)</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>3. Deliver</strong>
+                                <p>Sends the phishing message to victims</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>4. Exploit</strong>
+                                <p>Victim clicks link, enters credentials, or opens file</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <strong>5. Harvest</strong>
+                                <p>Attacker collects stolen data or gains access</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: Types of Phishing -->
+        <section class="slide" data-slide="2" data-title="Types of Phishing">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">02</div>
+                    <h2>Types of <span class="highlight">Phishing Attacks</span></h2>
+                </div>
+                <div class="types-grid">
+                    <div class="type-card" onclick="this.classList.toggle('flipped')">
+                        <div class="type-card-inner">
+                            <div class="type-card-front">
+                                <div class="type-emoji">📧</div>
+                                <h3>Email Phishing</h3>
+                                <p class="type-hint">Click to learn more</p>
+                            </div>
+                            <div class="type-card-back">
+                                <h4>Email Phishing</h4>
+                                <p>Mass emails impersonating banks, companies, or services. Often contain urgent language and suspicious links. Most common form of phishing.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type-card" onclick="this.classList.toggle('flipped')">
+                        <div class="type-card-inner">
+                            <div class="type-card-front">
+                                <div class="type-emoji">🎯</div>
+                                <h3>Spear Phishing</h3>
+                                <p class="type-hint">Click to learn more</p>
+                            </div>
+                            <div class="type-card-back">
+                                <h4>Spear Phishing</h4>
+                                <p>Highly targeted attacks directed at specific individuals or organizations. Uses personal information to appear legitimate and trustworthy.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type-card" onclick="this.classList.toggle('flipped')">
+                        <div class="type-card-inner">
+                            <div class="type-card-front">
+                                <div class="type-emoji">🐋</div>
+                                <h3>Whaling</h3>
+                                <p class="type-hint">Click to learn more</p>
+                            </div>
+                            <div class="type-card-back">
+                                <h4>Whaling</h4>
+                                <p>Targets high-level executives (CEOs, CFOs). Attackers pose as other executives or legal entities to authorize wire transfers or reveal confidential data.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type-card" onclick="this.classList.toggle('flipped')">
+                        <div class="type-card-inner">
+                            <div class="type-card-front">
+                                <div class="type-emoji">📱</div>
+                                <h3>Smishing (SMS)</h3>
+                                <p class="type-hint">Click to learn more</p>
+                            </div>
+                            <div class="type-card-back">
+                                <h4>Smishing</h4>
+                                <p>Phishing via text messages. Often claims to be from delivery services, banks, or government agencies with urgent action needed.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type-card" onclick="this.classList.toggle('flipped')">
+                        <div class="type-card-inner">
+                            <div class="type-card-front">
+                                <div class="type-emoji">📞</div>
+                                <h3>Vishing (Voice)</h3>
+                                <p class="type-hint">Click to learn more</p>
+                            </div>
+                            <div class="type-card-back">
+                                <h4>Vishing</h4>
+                                <p>Phone-based phishing where attackers call pretending to be tech support, IRS, or your bank. Uses urgency and authority to extract information.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type-card" onclick="this.classList.toggle('flipped')">
+                        <div class="type-card-inner">
+                            <div class="type-card-front">
+                                <div class="type-emoji">🌐</div>
+                                <h3>Clone Phishing</h3>
+                                <p class="type-hint">Click to learn more</p>
+                            </div>
+                            <div class="type-card-back">
+                                <h4>Clone Phishing</h4>
+                                <p>Duplicates a legitimate email you previously received, but replaces attachments or links with malicious versions. Very hard to detect.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: Recognizing Phishing Emails -->
+        <section class="slide" data-slide="3" data-title="Recognizing Phishing Emails">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">03</div>
+                    <h2>Recognizing <span class="highlight">Phishing Emails</span></h2>
+                </div>
+                <div class="email-demo">
+                    <div class="email-window">
+                        <div class="email-toolbar">
+                            <div class="email-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="email-title">Inbox — 1 New Message</span>
+                        </div>
+                        <div class="email-header">
+                            <div class="email-from">
+                                <strong>From:</strong> security@paypa1-support.com
+                                <span class="red-flag" data-tooltip="Look carefully — that's a '1' not an 'l'! The domain is fake.">🚩 Red Flag #1</span>
+                            </div>
+                            <div class="email-to"><strong>To:</strong> you@company.com</div>
+                            <div class="email-subject">
+                                <strong>Subject:</strong> ⚠️ URGENT: Your Account Has Been Compromised — Immediate Action Required!!!
+                                <span class="red-flag" data-tooltip="Excessive urgency, all-caps, and multiple exclamation marks are classic phishing tactics.">🚩 Red Flag #2</span>
+                            </div>
+                        </div>
+                        <div class="email-body">
+                            <p>Dear Valued Costumer,
+                                <span class="red-flag" data-tooltip="'Customer' is misspelled as 'Costumer' — a sign of a fraudulent email.">🚩 Red Flag #3</span>
+                            </p>
+                            <p>We have detected suspicous activity on your PayPal account. Your account has been temporarily limited. You must verify your identity within <strong>24 hours</strong> or your account will be permanently suspended.</p>
+                            <p>Click the button below to verify your account immediately:</p>
+                            <div class="fake-button-container">
+                                <a href="#" class="fake-verify-btn" onclick="event.preventDefault(); showEmailWarning()">
+                                    🔓 Verify My Account Now
+                                </a>
+                                <span class="red-flag" data-tooltip="Hovering reveals the URL goes to 'http://paypal-secure-login.sketchy-site.ru' — NOT PayPal!">🚩 Red Flag #4</span>
+                            </div>
+                            <p class="email-footer-text">
+                                If you did not make this change, please contact us immediately.<br>
+                                Sincerely,<br>PayPal Security Team
+                                <span class="red-flag" data-tooltip="Generic signature with no specific contact details, phone number, or employee name.">🚩 Red Flag #5</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="email-warning-popup" id="emailWarning">
+                        <div class="warning-content">
+                            <div class="warning-icon">⚠️</div>
+                            <h3>This is a phishing link!</h3>
+                            <p>In a real scenario, clicking this could have taken you to a fake login page designed to steal your credentials. Always hover over links to check the real URL before clicking.</p>
+                            <button onclick="hideEmailWarning()">Got it!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="checklist-section">
+                    <h3>✅ Quick Detection Checklist</h3>
+                    <div class="checklist">
+                        <div class="check-item"><span class="check-icon">🔍</span> Check the sender's email address carefully</div>
+                        <div class="check-item"><span class="check-icon">⏰</span> Beware of urgency & threatening language</div>
+                        <div class="check-item"><span class="check-icon">📝</span> Look for spelling & grammar errors</div>
+                        <div class="check-item"><span class="check-icon">🔗</span> Hover over links before clicking</div>
+                        <div class="check-item"><span class="check-icon">👤</span> Watch for generic greetings ("Dear Customer")</div>
+                        <div class="check-item"><span class="check-icon">📎</span> Be suspicious of unexpected attachments</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: Fake Websites -->
+        <section class="slide" data-slide="4" data-title="Spotting Fake Websites">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">04</div>
+                    <h2>Spotting <span class="highlight">Fake Websites</span></h2>
+                </div>
+                <div class="url-comparison">
+                    <div class="url-box legit">
+                        <div class="url-label safe-label">✅ Legitimate</div>
+                        <div class="url-bar">
+                            <span class="lock-icon">🔒</span>
+                            <span class="url-text">https://<strong>www.paypal.com</strong>/signin</span>
+                        </div>
+                        <ul class="url-details">
+                            <li>HTTPS with valid certificate</li>
+                            <li>Correct domain name</li>
+                            <li>Clean, professional URL structure</li>
+                        </ul>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="url-box fake">
+                        <div class="url-label danger-label">❌ Phishing</div>
+                        <div class="url-bar fake-bar">
+                            <span class="lock-icon">⚠️</span>
+                            <span class="url-text">http://<strong>paypa1-secure.login-verify.ru</strong>/signin</span>
+                        </div>
+                        <ul class="url-details">
+                            <li>HTTP — no encryption</li>
+                            <li>Misspelled domain ("paypa1")</li>
+                            <li>Suspicious foreign TLD (.ru)</li>
+                            <li>Excessive subdomains/hyphens</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tricks-section">
+                    <h3>🎭 Common URL Tricks Attackers Use</h3>
+                    <div class="tricks-grid">
+                        <div class="trick-item glass-card">
+                            <div class="trick-name">Typosquatting</div>
+                            <code>gooogle.com</code> <code>amazom.com</code>
+                            <p>Misspelled versions of real domains</p>
+                        </div>
+                        <div class="trick-item glass-card">
+                            <div class="trick-name">Subdomain Abuse</div>
+                            <code>paypal.com.evil-site.com</code>
+                            <p>Real domain used as subdomain of a fake one</p>
+                        </div>
+                        <div class="trick-item glass-card">
+                            <div class="trick-name">Homograph Attack</div>
+                            <code>аpple.com</code> <span class="trick-note">(Cyrillic 'а')</span>
+                            <p>Using look-alike Unicode characters</p>
+                        </div>
+                        <div class="trick-item glass-card">
+                            <div class="trick-name">URL Shorteners</div>
+                            <code>bit.ly/x8kQ2m</code>
+                            <p>Hides the real destination URL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: Social Engineering -->
+        <section class="slide" data-slide="5" data-title="Social Engineering Tactics">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">05</div>
+                    <h2>Social Engineering <span class="highlight">Tactics</span></h2>
+                </div>
+                <p class="section-intro">Phishing is a form of <strong>social engineering</strong> — the art of manipulating human psychology rather than exploiting technical vulnerabilities. Here are the key psychological principles attackers exploit:</p>
+                <div class="tactics-grid">
+                    <div class="tactic-card">
+                        <div class="tactic-icon">⏰</div>
+                        <h3>Urgency & Scarcity</h3>
+                        <p>"Act now or lose your account!" — Creates panic to bypass rational thinking.</p>
+                        <div class="tactic-example">
+                            <em>"Your account will be deleted in 24 hours unless you verify immediately."</em>
+                        </div>
+                    </div>
+                    <div class="tactic-card">
+                        <div class="tactic-icon">👔</div>
+                        <h3>Authority</h3>
+                        <p>Impersonating bosses, CEOs, government agencies, or IT departments to command compliance.</p>
+                        <div class="tactic-example">
+                            <em>"This is the IT department. We need your password to fix a critical security issue."</em>
+                        </div>
+                    </div>
+                    <div class="tactic-card">
+                        <div class="tactic-icon">🤝</div>
+                        <h3>Trust & Familiarity</h3>
+                        <p>Using known brand logos, colleague names, or personal details to appear legitimate.</p>
+                        <div class="tactic-example">
+                            <em>"Hi [Your Name], as discussed in our last meeting, please review this document."</em>
+                        </div>
+                    </div>
+                    <div class="tactic-card">
+                        <div class="tactic-icon">😨</div>
+                        <h3>Fear</h3>
+                        <p>Threatening consequences like legal action, account suspension, or financial loss.</p>
+                        <div class="tactic-example">
+                            <em>"Unusual login from Russia detected. If this wasn't you, click here immediately."</em>
+                        </div>
+                    </div>
+                    <div class="tactic-card">
+                        <div class="tactic-icon">🎁</div>
+                        <h3>Reciprocity & Greed</h3>
+                        <p>Offering free gifts, prizes, or exclusive deals to lure victims into clicking.</p>
+                        <div class="tactic-example">
+                            <em>"Congratulations! You've won a $500 Amazon gift card. Claim it now!"</em>
+                        </div>
+                    </div>
+                    <div class="tactic-card">
+                        <div class="tactic-icon">💡</div>
+                        <h3>Curiosity</h3>
+                        <p>Teasing with intriguing or alarming info to compel someone to click and learn more.</p>
+                        <div class="tactic-example">
+                            <em>"Someone shared embarrassing photos of you. See them here."</em>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: Real-World Examples -->
+        <section class="slide" data-slide="6" data-title="Real-World Examples">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">06</div>
+                    <h2>Real-World <span class="highlight">Examples</span></h2>
+                </div>
+                <div class="case-studies">
+                    <div class="case-card">
+                        <div class="case-header">
+                            <div class="case-severity critical">CRITICAL</div>
+                            <div class="case-year">2020</div>
+                        </div>
+                        <h3>🐦 Twitter Bitcoin Scam</h3>
+                        <p>Hackers used <strong>spear phishing</strong> on Twitter employees, gaining access to internal admin tools. They compromised accounts of Elon Musk, Barack Obama, Apple, and more — posting Bitcoin scam tweets.</p>
+                        <div class="case-impact">
+                            <span class="impact-tag">💰 $120,000+ stolen</span>
+                            <span class="impact-tag">👥 130 accounts compromised</span>
+                            <span class="impact-tag">📉 Stock price dropped</span>
+                        </div>
+                    </div>
+                    <div class="case-card">
+                        <div class="case-header">
+                            <div class="case-severity critical">CRITICAL</div>
+                            <div class="case-year">2016</div>
+                        </div>
+                        <h3>🏠 FACC CEO Fraud</h3>
+                        <p>Austrian aerospace company FACC lost <strong>€42 million</strong> when an employee transferred funds after receiving a phishing email impersonating the CEO requesting an "acquisition payment."</p>
+                        <div class="case-impact">
+                            <span class="impact-tag">💰 €42 million lost</span>
+                            <span class="impact-tag">👤 CEO & CFO fired</span>
+                            <span class="impact-tag">📉 Company near-bankruptcy</span>
+                        </div>
+                    </div>
+                    <div class="case-card">
+                        <div class="case-header">
+                            <div class="case-severity high">HIGH</div>
+                            <div class="case-year">2016</div>
+                        </div>
+                        <h3>📧 John Podesta Email Hack</h3>
+                        <p>A single phishing email disguised as a Google security alert tricked a political campaign chairman into entering his password on a fake page. Led to one of the most significant data leaks in U.S. political history.</p>
+                        <div class="case-impact">
+                            <span class="impact-tag">📄 50,000+ emails leaked</span>
+                            <span class="impact-tag">🌍 Global political impact</span>
+                        </div>
+                    </div>
+                    <div class="case-card">
+                        <div class="case-header">
+                            <div class="case-severity high">HIGH</div>
+                            <div class="case-year">2023</div>
+                        </div>
+                        <h3>🏢 MGM Resorts Attack</h3>
+                        <p>Attackers used <strong>vishing</strong> (voice phishing) — a simple phone call to the IT help desk impersonating an employee — to gain access. Result: systems down for 10 days, $100M+ in losses.</p>
+                        <div class="case-impact">
+                            <span class="impact-tag">💰 $100M+ losses</span>
+                            <span class="impact-tag">🏨 10 days of outages</span>
+                            <span class="impact-tag">🎰 Casinos disrupted</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="takeaway-box">
+                    <div class="takeaway-icon">💡</div>
+                    <div>
+                        <strong>Key Takeaway:</strong> Phishing attacks don't just target individuals — they can bring down entire organizations. Even tech-savvy people and major corporations fall victim. Awareness is your strongest defense.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: Best Practices -->
+        <section class="slide" data-slide="7" data-title="Best Practices">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">07</div>
+                    <h2>Best Practices & <span class="highlight">Tips</span></h2>
+                </div>
+                <div class="practices-container">
+                    <div class="practice-group">
+                        <h3>🛡️ Prevention</h3>
+                        <div class="practice-item">
+                            <div class="practice-number">1</div>
+                            <div>
+                                <strong>Enable Multi-Factor Authentication (MFA)</strong>
+                                <p>Even if your password is stolen, MFA adds another layer that blocks unauthorized access.</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-number">2</div>
+                            <div>
+                                <strong>Use a Password Manager</strong>
+                                <p>Generates unique, strong passwords for every site. A password manager won't auto-fill on fake domains.</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-number">3</div>
+                            <div>
+                                <strong>Keep Software Updated</strong>
+                                <p>Security patches fix known vulnerabilities that phishing attacks might exploit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="practice-group">
+                        <h3>🔎 Detection</h3>
+                        <div class="practice-item">
+                            <div class="practice-number">4</div>
+                            <div>
+                                <strong>Verify Through Separate Channels</strong>
+                                <p>Got a suspicious email from your boss? Call or message them directly to confirm — don't reply to the email.</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-number">5</div>
+                            <div>
+                                <strong>Inspect URLs Before Clicking</strong>
+                                <p>Hover over links to see the real destination. Type URLs directly in the browser instead of clicking links.</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-number">6</div>
+                            <div>
+                                <strong>Be Skeptical of Urgency</strong>
+                                <p>Legitimate companies rarely demand immediate action via email. Take a moment to verify before acting.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="practice-group">
+                        <h3>🚨 Response</h3>
+                        <div class="practice-item">
+                            <div class="practice-number">7</div>
+                            <div>
+                                <strong>Report Suspicious Emails</strong>
+                                <p>Use your email client's "Report Phishing" button. Notify your IT/security team immediately.</p>
+                            </div>
+                        </div>
+                        <div class="practice-item">
+                            <div class="practice-number">8</div>
+                            <div>
+                                <strong>If You Clicked — Act Fast</strong>
+                                <p>Change your password immediately, enable MFA, notify IT, and monitor your accounts for unusual activity.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: Quiz -->
+        <section class="slide" data-slide="8" data-title="Knowledge Quiz">
+            <div class="slide-content">
+                <div class="section-header">
+                    <div class="section-number">08</div>
+                    <h2>Knowledge <span class="highlight">Quiz</span></h2>
+                </div>
+                <p class="section-intro">Test your phishing awareness! Answer these questions to see how much you've learned.</p>
+                <div class="quiz-container" id="quizContainer">
+                    <!-- Quiz content generated by JS -->
+                </div>
+                <div class="quiz-results" id="quizResults" style="display:none;">
+                    <div class="results-card">
+                        <div class="results-icon" id="resultsIcon">🏆</div>
+                        <h3 id="resultsTitle">Great Job!</h3>
+                        <div class="results-score">
+                            <span class="score-number" id="scoreNumber">0</span>
+                            <span class="score-total">/ 5</span>
+                        </div>
+                        <p id="resultsMessage">You have a strong understanding of phishing awareness!</p>
+                        <div class="results-breakdown" id="resultsBreakdown"></div>
+                        <button class="cta-button" onclick="retakeQuiz()">
+                            Retake Quiz
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6M23 20v-6h-6"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: Summary & Certificate -->
+        <section class="slide" data-slide="9" data-title="Summary & Certificate">
+            <div class="slide-content hero-slide">
+                <div class="completion-badge animate-float">
+                    <div class="completion-icon-ring">
+                        <div class="completion-icon">🎓</div>
+                    </div>
+                </div>
+                <h2 class="hero-title">Training <span class="title-accent">Complete!</span></h2>
+                <p class="hero-subtitle">Congratulations on completing the Phishing Awareness Training. Here's a summary of what you learned:</p>
+                <div class="summary-grid">
+                    <div class="summary-item glass-card">
+                        <span class="summary-check">✅</span>
+                        <span>What phishing is and how it works</span>
+                    </div>
+                    <div class="summary-item glass-card">
+                        <span class="summary-check">✅</span>
+                        <span>6 types of phishing attacks</span>
+                    </div>
+                    <div class="summary-item glass-card">
+                        <span class="summary-check">✅</span>
+                        <span>How to spot phishing emails & fake websites</span>
+                    </div>
+                    <div class="summary-item glass-card">
+                        <span class="summary-check">✅</span>
+                        <span>Social engineering psychological tactics</span>
+                    </div>
+                    <div class="summary-item glass-card">
+                        <span class="summary-check">✅</span>
+                        <span>Real-world attack case studies</span>
+                    </div>
+                    <div class="summary-item glass-card">
+                        <span class="summary-check">✅</span>
+                        <span>8 best practices for prevention & response</span>
+                    </div>
+                </div>
+                <div class="certificate-card" id="certificateCard">
+                    <div class="cert-border">
+                        <div class="cert-content">
+                            <div class="cert-logo">🛡️</div>
+                            <h3>Certificate of Completion</h3>
+                            <p class="cert-subtitle">CyberShield Academy</p>
+                            <div class="cert-divider"></div>
+                            <p class="cert-body">This certifies that</p>
+                            <div class="cert-name-input">
+                                <input type="text" id="certName" placeholder="Enter Your Name" maxlength="40">
+                            </div>
+                            <p class="cert-body">has successfully completed the</p>
+                            <p class="cert-course"><strong>Phishing Awareness Training</strong></p>
+                            <p class="cert-date" id="certDate"></p>
+                            <button class="cert-download-btn" onclick="downloadCertificate()">
+                                📥 Download Certificate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="final-reminder">
+                    <h3>🔑 Remember</h3>
+                    <p><strong>"Think before you click."</strong> When in doubt, verify through a separate channel. You are the first and last line of defense against phishing.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Keyboard hints -->
+    <div class="keyboard-hint" id="keyboardHint">
+        Use <kbd>←</kbd> <kbd>→</kbd> arrow keys to navigate
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
